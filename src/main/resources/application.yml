@@ -1,3 +1,28 @@
+server:
+  port: ${INTEGRATION_MANAGER_SERVER_PORT:8080}
+  shutdown: graceful
+
 spring:
   application:
     name: processamento-planilhas
+  main:
+    banner-mode: off
+  threads:
+    virtual:
+      enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+    resolve-extensions-properties: true
+  override-with-generic-response: false
+  paths-to-exclude: /**/api-docs,/swagger-resources/**
+  swagger-ui:
+    path: /swagger-ui
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:  health
+      base-path: '/actuator'
