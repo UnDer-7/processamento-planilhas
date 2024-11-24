@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Automação</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: rgb(252, 252, 48);
+        }
+        .button-container {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        .button-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        button {
+            padding: 10px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(51, 51, 189);
+            color: white;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: antiquewhite;
+            color: black;
+        }
+        #execute {
+            background-color: darkred;
+        }
+        #execute:hover {
+            background-color: blueviolet;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>Automação do Adendo</h1>
+    <p>Teste de commit</p>
+<div class="button-container">
+    <button id="button1" title="Clique para importar a planilha de TAA.">Importar TAA</button>
+    <button id="button2" title="Clique para importar a planilha de DEMAIS BENS.">Importar DEMAIS BENS</button>
+    <button onclick="window.location.href='anexoBB.html'">Anexo BB</button>
+</div>
+
+<div class="button-row">
+    <button id="execute" title="Clique para processar os dados importados e executar a automação.">Executar</button>
+</div>
+
+<input type="file" id="fileInput" accept=".xlsx, .xls" title="Selecione um arquivo Excel para importação.">
+
+<script>
+    const fileInput = document.getElementById('fileInput');
+
+    // Function to handle file selection and upload
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            // Optionally, you can read the file locally using FileReader if needed
+            // For now, we'll upload it directly to the server
+
+            const formData = new FormData();
+            formData.append('spreadsheet', file);
+
+            fetch('/api/v1/process', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Dados enviados com sucesso!");
+                    } else {
+                        throw new Error('Erro na resposta do servidor.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar os dados:', error);
+                    alert("Erro ao enviar os dados.");
+                });
+        }
+    };
+
+    // Event listener for file input change
+    fileInput.addEventListener('change', handleFileUpload);
+
+    // Trigger file input click when button1 is clicked
+    document.getElementById('button1').addEventListener('click', () => {
+        fileInput.click();
+    });
+</script>
+</body>
+</html>
