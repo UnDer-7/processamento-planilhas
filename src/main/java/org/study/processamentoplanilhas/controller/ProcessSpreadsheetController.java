@@ -1,26 +1,16 @@
 package org.study.processamentoplanilhas.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.study.processamentoplanilhas.ProcessamentoPlanilhasApplication;
-import org.study.processamentoplanilhas.entity.CarroSpreadsheet;
+import org.study.processamentoplanilhas.domain.CarroSpreadsheet;
 import org.study.processamentoplanilhas.service.ProcessSpreadsheetService;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Slf4j

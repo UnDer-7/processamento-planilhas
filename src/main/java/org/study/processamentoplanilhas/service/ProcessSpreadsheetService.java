@@ -9,7 +9,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.study.processamentoplanilhas.entity.CarroSpreadsheet;
+import org.study.processamentoplanilhas.domain.CarroSpreadsheet;
 
 import java.io.IOException;
 import java.io.InputStream;

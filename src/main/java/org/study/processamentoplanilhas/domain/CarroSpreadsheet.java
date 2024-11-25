@@ -1,7 +1,8 @@
-package org.study.processamentoplanilhas.entity;
+package org.study.processamentoplanilhas.domain;
 
 public class CarroSpreadsheet {
 
+    // Colunas da tabela
     private String data;
     private String abastecido;
     private String hodometro;
